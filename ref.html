@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Épopée Mécanique - Modèles Iconiques</title>
+
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --dark-bg: #0f0c29;
+            --card-bg: #1a1633;
+            --light-text: #e8eaf6;
+            --shadow-card: 0 10px 30px rgba(102, 126, 234, 0.3);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-card: linear-gradient(135deg, #1a1633 0%, #2d2654 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--gradient-main);
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: none;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.6), 0 0 60px rgba(118, 75, 162, 0.4);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffffff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 20px;
+            text-shadow: none;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .qr-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border-radius: 15px;
+            width: 90px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .qr-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(26, 22, 51, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 18px 30px;
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--gradient-main);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a:hover::before {
+            width: 80%;
+        }
+
+        /* --- LAYOUT --- */
+        .main-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section, aside {
+            background: var(--gradient-card);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 25px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        h2 {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.3em;
+        }
+
+        /* --- CARDS AVEC PHOTOS --- */
+        .cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .moto-card {
+            background: linear-gradient(135deg, #2d2654 0%, #1a1633 100%);
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .moto-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
+            border-color: var(--primary-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: none;
+            transition: transform 0.4s ease;
+        }
+
+        .moto-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        /* --- TABLEAU --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #2d2654 0%, #1a1633 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        th {
+            background: var(--gradient-main);
+            padding: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        tr:hover td {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1633 100%);
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 3px solid;
+            border-image: var(--gradient-main) 1;
+            margin-top: 40px;
+        }
+
+        pre {
+            color: var(--primary-color);
+            font-size: 8px;
+            line-height: 8px;
+            opacity: 0.7;
+        }
+
+        .btn-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-main);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            text-decoration: none;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.7);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .cards-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <header>
+        <img src="C:\Users\Hp\Downloads\hiba.jpeg" alt="Profil" class="profile-pic">
+        <h1>Passion Moto & Prestige</h1>.
+        <div class="qr-badge">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com" alt="QR" style="width:100%">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#models">Les Machines</a></li>
+            <li><a href="#specs">Fiches Tech</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <div class="content-wrapper">
+            
+            <section id="models">
+                <h2>Sélection des Modèles Iconiques</h2>
+                <div class="cards-wrapper">
+                    
+                    <article class="moto-card">
+                        <img src="C:\Users\Hp\Downloads\mt09.jpeg" alt="Yamaha MT-09" class="card-img">
+                        <div class="card-content">
+                            <h3>🏍️ Roadster : Yamaha MT-09</h3>
+                            <p>La "Dark Side of Japan". Un moteur trois cylindres explosif et un look agressif pour dominer la ville.</p>
+                        </div>
+                    </article>
+
+                    <article class="moto-card">
+                        <img src="C:\Users\Hp\Downloads\su.jpeg" alt="Suzuki GSX-R" class="card-img">
+                        <div class="card-content">
+                            <h3>🏁 Sportive : Suzuki GSX-R</h3>
+                            <p>La légende des circuits. Une précision chirurgicale et une accélération qui défie les lois de la physique.</p>
+                        </div>
+                    </article>
+
+                    <article class="moto-card">
+                        <img src="https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600&q=80" alt="Yamaha Tracer" class="card-img">
+                        <div class="card-content">
+                            <h3>🏜️ Trail : Yamaha Tracer</h3>
+                            <p>Le sport-touring par excellence. Confortable pour les longs voyages et agile dans les virages de montagne.</p>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section id="specs">
+                <h2>Tableau des Performances</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modèle</th>
+                            <th>Moteur</th>
+                            <th>Puissance</th>
+                            <th>Poids</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Suzuki GSX-R 1000</td>
+                            <td>4 cyl. en ligne</td>
+                            <td>202 ch</td>
+                            <td>202 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Yamaha MT-09</td>
+                            <td>3 cyl. CP3</td>
+                            <td>119 ch</td>
+                            <td>189 kg</td>
+                        </tr>
+                        <tr>
+                            <td>Yamaha Tracer 9</td>
+                            <td>3 cyl. CP3</td>
+                            <td>119 ch</td>
+                            <td>213 kg</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="contact">
+                <h2>Contactez l'Expert</h2>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="mailto:expert@moto.com" 
+                       style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 18px 40px; text-decoration: none; font-weight: bold; border-radius: 50px; display: inline-block; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                       📩 Envoyer un Email
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <aside>
+            <h3>Info Constructeur</h3>
+            <p><strong>Yamaha</strong> et <strong>Suzuki</strong> dominent le marché mondial avec des innovations constantes en MotoGP.</p>
+            <hr style="border-color: var(--primary-color);">
+            <p><em>"Vivre pour rouler, rouler pour vivre."</em></p>
+        </aside>
+    </main>
+
+    <footer>
+        <p style="color: #7f8c8d;">&copy; 2025 - Créé par [VOTRE NOM]. Tous droits réservés.</p>
+        <pre>
+   __  __       _        _____                      
+  |  \/  |     | |      |  __ \                     
+  | \  / | ___ | |_ ___ | |__) |___  _ __ ___  ___  
+  | |\/| |/ _ \| __/ _ \|  ___// _ \| '__/ __|/ __| 
+  | |  | | (_) | || (_) | |   | (_) | |  \__ \\__ \ 
+  |_|  |_|\___/ \__\___/|_|    \___/|_|  |___/|___/ 
+        </pre>
+    </footer>
+
+    <a href="#top" class="btn-top">⬆</a>
+
+</body>
+</html>  
